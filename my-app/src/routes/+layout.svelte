@@ -13,7 +13,7 @@
       <div class="hidden lg:flex lg:gap-x-12">
         <a href="/" class="text-sm font-semibold leading-6 text-gray-900">All products</a>
         <a href="/history" class="text-sm font-semibold leading-6 text-gray-900">History</a>
-        <a href="/about" class="text-sm font-semibold leading-6 text-gray-900">About us</a>
+        <a href="/checkout" class="text-sm font-semibold leading-6 text-gray-900">Checkout</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
       {#if data.loggedIn}
