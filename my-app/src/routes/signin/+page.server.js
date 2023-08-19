@@ -18,6 +18,7 @@ export const actions = {
         console.log(res);
         if(res){
             cookies.set('loggedIn', 'true');
+            cookies.set('email', email);
             throw redirect(302, '/');
         } else{
             return fail(422, {

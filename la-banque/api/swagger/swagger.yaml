@@ -1,9 +1,9 @@
 swagger: "2.0"
 info:
   version: "0.0.1"
-  title: Hello World App
+  title: Bank App
 # during dev, should point to your local machine
-host: localhost:10010
+host: localhost:10020
 # basePath prefixes all resource paths 
 basePath: /
 # 
@@ -32,6 +32,58 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /connect:
+    x-swagger-router-controller: connect
+    post:
+      description: connect bank with e-commerce
+      operationId: connect
+      parameters:
+        - name: user
+          in: body
+          description: User information for connection
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              uuid:
+                type: string
+              password:
+                type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/VerificationResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /verify:
+    x-swagger-router-controller: verify
+    post:
+      description: Verification endpoint
+      operationId: verify
+      parameters:
+        - name: user
+          in: body
+          description: User information for verification
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/VerificationResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -42,6 +94,12 @@ definitions:
     properties:
       message:
         type: string
+  VerificationResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: boolean
   ErrorResponse:
     required:
       - message
