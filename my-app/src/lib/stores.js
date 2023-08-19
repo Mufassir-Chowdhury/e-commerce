@@ -1,4 +1,5 @@
+import { browser } from '$app/environment';
 import {writable} from 'svelte/store';
 
-export const cart = writable([]);
-
+let localData = browser ? localStorage.getItem('cart'): null;
+export const cart = writable(localData ? JSON.parse(localData) : []);

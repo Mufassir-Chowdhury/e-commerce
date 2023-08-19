@@ -18,6 +18,7 @@
   function addToCart(event){
     cart.update((items) => {
       items.push({
+        index: items.length + 1,
         id: data.products.id,
         name: data.products.name,
         image: data.products.image,
@@ -26,6 +27,7 @@
         size: sizeChecked,
         quantity: quantity
       });
+      localStorage.setItem("cart", JSON.stringify(items));
       return items;
     });
   }
