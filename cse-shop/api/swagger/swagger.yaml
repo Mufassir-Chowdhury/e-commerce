@@ -177,7 +177,7 @@ definitions:
       - message
     properties:
       message:
-        type: boolean
+        type: string
   LoginResponse:
     required:
       - message

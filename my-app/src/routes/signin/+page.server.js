@@ -13,10 +13,10 @@ export const actions = {
             },
             body: JSON.stringify({ email, password }),
         });
-        console.log(JSON.stringify({ email, password }));
         const res = await response.json();
         console.log(res);
         if(res){
+            cookies.set('id', res);
             cookies.set('loggedIn', 'true');
             cookies.set('email', email);
             throw redirect(302, '/');

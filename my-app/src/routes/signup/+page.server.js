@@ -13,11 +13,26 @@ export const actions = {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({ name, email, password }),
+        }).catch((e) => {
+            console.log(e);
+            return fail(422, {
+                name: name,
+                email: email,
+                password: password,
+                error: 'Invalid email or password',
+            })
         });
-        console.log(JSON.stringify({ name, email, password }));
-        const res = await response.json();
+        const res = await response.json().catch((e) => {
+            return fail(422, {
+                name: name,
+                email: email,
+                password: password,
+                error: 'Invalid email or password',
+            })
+        });
         console.log(res);
         if(res){
+            cookies.set('id', res);
             cookies.set('loggedIn', 'true');
             cookies.set('email', email);
             throw redirect(302, '/');
