@@ -84,6 +84,56 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /payment:
+    x-swagger-router-controller: payment
+    post:
+      description: Confirm payment
+      operationId: payment
+      parameters:
+        - name: user
+          in: body
+          description: User information for verification
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              amount:
+                type: number
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/PaymentResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /balance:
+    x-swagger-router-controller: payment
+    post:
+      description: Get balance
+      operationId: balance
+      parameters:
+        - name: user
+          in: body
+          description: User information for verification
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/BalanceResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -100,6 +150,18 @@ definitions:
     properties:
       message:
         type: boolean
+  BalanceResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: number
+  PaymentResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
   ErrorResponse:
     required:
       - message

@@ -49,7 +49,7 @@
           
   
           <!-- <form class="mt-10"> -->
-            <div>
+            <!-- <div>
               <h3 class="text-sm font-medium text-gray-900">Color</h3>
   
               <fieldset class="mt-4">
@@ -59,25 +59,25 @@
                     <label class:ring-2={color == colorChecked} class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
                       <input type="radio" name="color_choice" value={color} bind:group={color_choice} class="sr-only" aria-labelledby="color-choice-0-label">
                       <span id="color-choice-0-label" class="sr-only">{color}</span>
-                      <span aria-hidden="true" class="h-8 w-8 bg-{color}-500 rounded-full border border-black border-opacity-10"></span>
+                      <span aria-hidden="true" class="h-8 w-8 {color} rounded-full border border-black border-opacity-10"></span>
                     </label>
                   {/each}
                 </div>
               </fieldset>
-            </div>
+            </div> -->
   
             <div class="mt-10">
               <div class="flex items-center justify-between">
-                <h3 class="text-sm font-medium text-gray-900">Size</h3>
+                <h3 class="text-sm font-medium text-gray-900">Color</h3>
               </div>
   
               <fieldset class="mt-4">
-                <legend class="sr-only">Choose a size</legend>
+                <legend class="sr-only">Choose a color</legend>
                 <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                  {#each data.products.sizes as size}
-                  <label class:border-indigo-500={size == sizeChecked} class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                    <input type="radio" name="size-choice" value="{size}" bind:group={size_choice} class="sr-only" aria-labelledby="size-choice-1-label">
-                    <span id="size-choice-1-label">{size}</span>
+                  {#each data.products.colors as color}
+                  <label class:border-indigo-500={color == colorChecked} class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
+                    <input type="radio" name="size-choice" value="{color}" bind:group={color_choice} class="sr-only" aria-labelledby="size-choice-1-label">
+                    <span id="size-choice-1-label">{color}</span>
                     <span  class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
                   </label>
                   {/each}
