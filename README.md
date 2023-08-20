@@ -48,4 +48,13 @@ Load users into banks before signup:
 	 http://localhost:8080/sql
 ```
 
+> Note: If you want to run the project again, you only need to run the servers and clients. No need to install dependencies again.
+> The full stack applications are:
+> - bank-app
+> - my-app
+> The servers are:
+> - cse-shop
+> - cse-logistics
+> - la-banque
+
 # FEEL FREE TO USE THIS PROJECT
