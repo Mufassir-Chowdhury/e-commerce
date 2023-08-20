@@ -8,9 +8,25 @@ const db = require('./surreal.js');
 
 
 function get_all_products(req, res) {
+
+    // get all products from the database
     db.select('product').then((result) => {
         res.json(result);
     });
+}
+
+function get_product(req, res) {
+
+    // get all information about a single product from the database
+    db.query('SELECT * FROM product WHERE slug = "' + req.swagger.params.id.value +'"').then((result) => {
+        res.json(result[0].result[0]);
+    });
+}
+
+
+
+
+
 //     const products = [
         
 //         {
@@ -28,14 +44,9 @@ function get_all_products(req, res) {
 //             image: 'https://i.ibb.co/1R7wr06/aea52ba8-2fb2-4282-962f-2058c9d42fdf.jpg'
 //         }
 //     ]
-//   res.json(products);
-}
 
-function get_product(req, res) {
-    console.log(req.swagger.params.id.value);
-    db.query('SELECT * FROM product WHERE slug = "' + req.swagger.params.id.value +'"').then((result) => {
-        res.json(result[0].result[0]);
-    });
+
+
     // const data = {
     //     id: 1,
     //     name: 'Nerdy Rubber Duck',
@@ -71,4 +82,3 @@ function get_product(req, res) {
     //     sizes: ['Small', 'Medium', 'Large'],
     // }
     // res.json(data);
-}

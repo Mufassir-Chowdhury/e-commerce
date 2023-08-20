@@ -3,7 +3,7 @@ info:
   version: "0.0.1"
   title: Hello World App
 # during dev, should point to your local machine
-host: localhost:10010
+host: localhost:10030
 # basePath prefixes all resource paths 
 basePath: /
 # 
@@ -23,6 +23,42 @@ paths:
     get:
       description: Returns server status to the caller
       operationId: status
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/HelloWorldResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /supply:
+    x-swagger-router-controller: supply
+    post:
+      description: Begin supply of the products
+      operationId: supply
+      parameters:
+        - name: supply
+          in: body
+          description: Supply information
+          required: true
+          schema:
+            type: object
+            properties:
+              trxID:
+                type: string
+              cart:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    slug:
+                      type: string
+                    quantity:
+                      type: integer
+                    color:
+                      type: string
+                    
       responses:
         "200":
           description: Success

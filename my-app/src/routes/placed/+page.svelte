@@ -6,11 +6,6 @@
     cart.subscribe(value => {
         cartItems = JSON.stringify(value);
     });
-    cart.update(value => {
-        value = [];
-        browser ? localStorage.setItem("cart", JSON.stringify(value)) : null;
-        return value;
-    });
     export let data;
 </script>
 <div class="flex justify-center mt-10">

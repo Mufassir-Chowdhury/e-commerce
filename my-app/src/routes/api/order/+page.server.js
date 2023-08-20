@@ -6,6 +6,7 @@ export const actions = {
         const email = data.get('email');
         const trxID = data.get('trxID');
         const cart = JSON.parse(data.get('cart'));
+        console.log(cart);
         const response = await fetch('http://localhost:10010/order' , {
             method: 'POST',
             headers: {
@@ -14,6 +15,6 @@ export const actions = {
             },
             body: JSON.stringify({ email, trxID, cart}),
         });
-        throw redirect(302, 'http://127.0.0.1:5173/');
+        throw redirect(302, 'http://127.0.0.1:5173/clearCart');
    }
 }

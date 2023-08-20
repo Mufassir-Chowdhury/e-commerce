@@ -84,6 +84,30 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /validate:
+    x-swagger-router-controller: verify
+    post:
+      description: Verification endpoint
+      operationId: validate
+      parameters:
+        - name: user
+          in: body
+          description: User information for verification
+          required: true
+          schema:
+            type: object
+            properties:
+              trxID:
+                type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/VerificationResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /payment:
     x-swagger-router-controller: payment
     post:
