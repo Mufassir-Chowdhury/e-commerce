@@ -13,7 +13,6 @@ function verify(req, res) {
   // search for the user information from the bank database
   db.query('SELECT * FROM user WHERE email = "' + req.swagger.params.user.value.email +'"').
   then((result) => {
-    console.log(result[0]);
     // check if the user is verified
     if(result[0].result[0].verified){
       res.json(true);

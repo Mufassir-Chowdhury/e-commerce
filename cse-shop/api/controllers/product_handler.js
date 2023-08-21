@@ -10,8 +10,15 @@ const db = require('./surreal.js');
 function get_all_products(req, res) {
     console.log('Got all products');
     // get all products from the database
-    db.select('product').then((result) => {
-        res.json(result);
+    db.select('product')
+    .then((result) => {
+        if(result.length > 0){
+            res.json(result);
+        } else {
+            res.status(204).send("No products found")
+        }
+    }).catch((err) => {
+        res.status(204).send("No products found")
     });
 }
 
@@ -19,7 +26,13 @@ function get_product(req, res) {
     console.log('Got product');
     // get all information about a single product from the database
     db.query('SELECT * FROM product WHERE slug = "' + req.swagger.params.id.value +'"').then((result) => {
-        res.json(result[0].result[0]);
+        if(result[0].result.length > 0){
+            res.json(result[0].result[0]);
+        } else {
+            res.status(204).send("No product found")
+        }
+    }).catch((err) => {
+        res.status(204).send("No product found")
     });
 }
 

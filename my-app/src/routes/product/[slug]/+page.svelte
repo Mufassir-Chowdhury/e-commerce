@@ -34,13 +34,17 @@
 </script>
 
 <div class="bg-white">
-    <div class="pt-6">
-        
-        <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+  <div class="pt-6">
+    
+    {#if data.error != null}
+    <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+      <h1 class="text-2xl font-bold tracking-tight text-red-900 sm:text-3xl">{data.error}</h1>
+    </div>
+    {:else if data.products != []}
+    <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
         <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
           <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{data.products.name}</h1>
         </div>
-  
         <!-- Options -->
         <div class="mt-4 lg:row-span-3 lg:mt-0">
           <h2 class="sr-only">Product information</h2>
@@ -51,7 +55,7 @@
           <!-- <form class="mt-10"> -->
             <!-- <div>
               <h3 class="text-sm font-medium text-gray-900">Color</h3>
-  
+              
               <fieldset class="mt-4">
                 <legend class="sr-only">Choose a color</legend>
                 <div class="flex items-center space-x-3">
@@ -137,6 +141,7 @@
   
         </div>
       </div>
+      {/if}
     </div>
   </div>
   

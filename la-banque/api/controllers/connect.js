@@ -24,13 +24,17 @@ function connect(req, res) {
       db.merge(result[0].result[0].id, {verified: true});
       res.json(true);
     
-    } 
-    else{
+    } else if(result[0].result.length === 0){
+
+      // this person doesn't have a bank account
+      res.status(204).send('No bank account found');
+    
+    }else{
     
       // if the e-commerce for this user is not verified, and the password and uuid are incorrect, return false
       res.json(false);
     
     }}).catch((err) => {
-      res.json(false);
+      res.status(204).send('Incorrect password or uuid');
     })
 }
