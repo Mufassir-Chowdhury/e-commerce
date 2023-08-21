@@ -13,8 +13,8 @@ function connect(req, res) {
   // search for the user information from the bank database
   db.query('SELECT * FROM user WHERE email = "' + person.email +'"').
   then((result) => {
+
     if(result[0].result[0].verified){
-      
       // if the e-commerce for this user is already verified, return true
       res.json(true);
     
@@ -30,5 +30,7 @@ function connect(req, res) {
       // if the e-commerce for this user is not verified, and the password and uuid are incorrect, return false
       res.json(false);
     
-    }});
+    }}).catch((err) => {
+      res.json(false);
+    })
 }

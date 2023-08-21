@@ -8,7 +8,7 @@ const db = require('./surreal.js');
 
 
 function get_all_products(req, res) {
-
+    console.log('Got all products');
     // get all products from the database
     db.select('product').then((result) => {
         res.json(result);
@@ -16,7 +16,7 @@ function get_all_products(req, res) {
 }
 
 function get_product(req, res) {
-
+    console.log('Got product');
     // get all information about a single product from the database
     db.query('SELECT * FROM product WHERE slug = "' + req.swagger.params.id.value +'"').then((result) => {
         res.json(result[0].result[0]);

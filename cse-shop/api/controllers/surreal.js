@@ -15,7 +15,7 @@ async function main(){
         await db.query('DEFINE INDEX email ON TABLE person COLUMNS email UNIQUE;');
 
 	} catch (e) {
-
+		
 		console.error('ERROR', e);
 
 	}

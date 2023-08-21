@@ -12,21 +12,22 @@ function signup(req, res) {
     try{
 
         // create a new user in e-commerce site
-        let created = db.create("person", {
+        db.create("person", {
             name: person.name,
             email: person.email,
             password: person.password,
         }).then((created) => {
-        
+            console.log("created");
             // return the id of the created user
             res.json(created[0].id);
         
+        }).catch((err) => {
+            res.status(204).send(err);
         });
     } catch (e) {
 
         // if the user already exists, throw error
-        console.error('ERROR', e);
-        throw e;
+        res.status(204).send(e);
 
     }
 }
@@ -37,18 +38,20 @@ function signin(req, res) {
     try{
 
         // check if the user exists in the e-commerce site and the password is correct
-        const result = db.query("SELECT * FROM person WHERE email = '" + person.email + "' AND password = '" + person.password + "';"
+        db.query("SELECT * FROM person WHERE email = '" + person.email + "' AND password = '" + person.password + "';"
         ).then((result) => {
 
             // return the id of the user if there is a match
             if(result[0].result.length > 0){
                 res.json(result[0].result[0].id);
             } else{
-                throw new Error('Invalid email or password');
+                res.status(204).send();
             }
-        });
+
+        }).catch((err) => {
+            res.status(204).send(err);
+        })
     } catch (e) {
-        console.error('ERROR', e);
-        throw e;
+        res.status(204).send(e);
     }
 }
