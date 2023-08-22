@@ -11,7 +11,6 @@ export async function load({cookies, url}) {
             body: JSON.stringify({ email }),
         });
     const res = await response.json();
-    console.log(res);
 
     if(loggedIn == null || loggedIn !== 'true' ) {
         if(url.pathname !== '/signin' && url.pathname !== '/signup')

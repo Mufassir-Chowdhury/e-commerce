@@ -13,9 +13,7 @@ export async function load({ params }) {
                 error = 'No Products Found';
             });
         products = await response.json();
-        console.log(products);
     } catch(e){
-        console.log('no products found');
         error = 'No Products Found';
     }
     return {

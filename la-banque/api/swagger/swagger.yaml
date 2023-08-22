@@ -158,6 +158,32 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /signin:
+    x-swagger-router-controller: authentication_controller
+    post:
+      description: Sign in endpoint
+      operationId: signin
+      parameters:
+        - name: user
+          in: body
+          description: User information for sign in
+          required: true
+          schema:
+            type: object
+            properties:
+              uuid:
+                type: string
+              password:
+                type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/LoginResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -181,6 +207,12 @@ definitions:
       message:
         type: number
   PaymentResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  LoginResponse:
     required:
       - message
     properties:

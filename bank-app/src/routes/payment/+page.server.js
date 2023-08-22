@@ -2,7 +2,6 @@ import { redirect } from '@sveltejs/kit';
 
 export const actions = {
     default: async ({cookies, request}) => {
-        const data = await request.formData();
         const email = cookies.get('email');
         const amount = parseInt(cookies.get('amount'));
         const response = await fetch('http://localhost:10020/payment', {

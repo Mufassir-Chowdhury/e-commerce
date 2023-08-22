@@ -1,6 +1,6 @@
 <script>
     import { cart } from '$lib/stores.js';
-
+    export let data;
     let cartItems;
     cart.subscribe(value => {
         cartItems = value;
@@ -94,8 +94,13 @@
                         <input type="text" value={totalPrice+5} name="totalAmount" hidden>
                     </div>
                     <div class="px-8 py-4 ">
-                        <button class="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Pay</button>
+                        <button disabled={!data.verified  || cartItems.length == 0} class:bg-gray-300={!data.verified  || cartItems.length == 0} class="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Pay</button>
                     </div>
+                    {#if !data.verified}
+                        <div class="px-8 py-4 text-center">
+                            <p class="text-red-500">Please connect your bank account to continue</p>
+                        </div>
+                    {/if}
                 </div>
             </div>
         </section>

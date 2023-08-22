@@ -14,7 +14,9 @@
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
+		"@smui/snackbar": "^7.0.0-beta.14",
 		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/adapter-cloudflare": "^2.3.2",
 		"@sveltejs/kit": "^1.20.4",
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tailwindcss/forms": "^0.5.4",
@@ -30,5 +32,11 @@
 		"vite": "^4.4.2",
 		"vitest": "^0.32.2"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@popperjs/core": "^2.11.8",
+		"flowbite": "^1.8.1",
+		"flowbite-svelte": "^0.44.4",
+		"tailwind-merge": "^1.14.0"
+	}
 }
