@@ -47,6 +47,10 @@ paths:
             properties:
               trxID:
                 type: string
+              orderID:
+                type: string
+              amount:
+                type: number
               cart:
                 type: array
                 items:
@@ -68,6 +72,45 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /confirm:
+    x-swagger-router-controller: supply
+    post:
+      description: Begin supply of the products
+      operationId: confirm
+      parameters:
+        - name: order
+          in: body
+          description: Supply information
+          required: true
+          schema:
+            type: object
+            properties:
+              orderID:
+                type: string
+                    
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/HelloWorldResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /supplies:
+    x-swagger-router-controller: supply
+    get:
+      description: Get all supply orders
+      operationId: supplies
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SuppliesResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -78,6 +121,42 @@ definitions:
     properties:
       message:
         type: string
+  SuppliesResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: object
+        properties:
+          orderID:
+            type: string
+          trxID:
+            type: string
+          amount:
+            type: number
+          status:
+            type: string
+          cart:
+            type: array
+            items:
+              type: object
+              properties:
+                quantity:
+                  type: number
+                color:
+                  type: string
+                price:
+                  type: number
+                name:
+                  type: string
+                image:
+                  type: string
+                index:
+                  type: number
+                id: 
+                  type: string
+                size:
+                  type: string
   ErrorResponse:
     required:
       - message

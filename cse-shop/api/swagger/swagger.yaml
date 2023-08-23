@@ -133,16 +133,28 @@ paths:
                 type: string
               trxID:
                 type: string
+              amount:
+                type: number
               cart:
                 type: array
                 items:
                   type: object
                   properties:
-                    slug:
-                      type: string
                     quantity:
                       type: number
                     color:
+                      type: string
+                    price:
+                      type: number
+                    name:
+                      type: string
+                    image:
+                      type: string
+                    index:
+                      type: number
+                    id: 
+                      type: string
+                    size:
                       type: string
       responses:
         "200":

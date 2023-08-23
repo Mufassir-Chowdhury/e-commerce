@@ -63,3 +63,10 @@ function connect(req, res) {
 //   verified: false,
 //   balance: 0
 // };
+// create user content {
+//   email: 'bank@supplier.com',
+//   uuid: '20000',
+//   password: 'root',
+//   verified: false,
+//   balance: 0
+// };

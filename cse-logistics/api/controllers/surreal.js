@@ -12,7 +12,6 @@ async function main(){
 
 		// Select a specific namespace / database
 		await db.use({ns: 'test', db: 'test'});
-        await db.query('DEFINE INDEX email ON TABLE person COLUMNS email UNIQUE;');
 
 	} catch (e) {
 
