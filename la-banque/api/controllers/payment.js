@@ -47,13 +47,13 @@ function supplyPayment(req, res) {
               .then((result) => {
                   res.json(result[0].id);
               });
-  
+              const amount =  Math.round(person.amount*.9);
               // update the user's balance
-              db.merge(result[0].result[0].id, {balance: result[0].result[0].balance - (person.amount*.9)});
+              db.merge(result[0].result[0].id, {balance: result[0].result[0].balance - amount});
   
               // update the bank's balance
               db.query('SELECT * FROM user WHERE email = "bank@supplier.com"').then((result) => { 
-                  db.merge(result[0].result[0].id, {balance: result[0].result[0].balance + (person.amount*.9)});
+                  db.merge(result[0].result[0].id, {balance: result[0].result[0].balance + amount});
               });
           });
   }

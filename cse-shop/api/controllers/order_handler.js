@@ -2,6 +2,7 @@
 
 module.exports = {
   order: order,
+  orders: orders,
 };
 
 let db = require('./surreal.js');
@@ -35,5 +36,15 @@ function order(req, res) {
     }).catch((err) => {
         console.log(err)
         res.status(204).send(err);
+    });
+}
+
+// get all orders
+function orders(req, res) {
+    const person = req.swagger.params.user.value;
+    db.query('select * from order where email = "' + person.email +'" order by time desc').then((result) => {
+        res.json(result[0].result);
+    }).catch((err) => {
+        res.json(err);
     });
 }
