@@ -2,7 +2,8 @@
 
 module.exports = {
   payment: payment,
-  balance: balance
+  balance: balance,
+  supplyPayment: supplyPayment
 };
 
 let db = require('./surreal.js');
@@ -33,6 +34,29 @@ function payment(req, res) {
             });
         }});
 }
+// make a payment
+function supplyPayment(req, res) {
+    const person = req.swagger.params.user.value;
+  
+    // search for the user information from the bank database
+    db.query('SELECT * FROM user WHERE email = "bank@e-commerce.com"')
+      .then((result) => {
+            console.log("person.amount", person.amount);
+              // if the user has enough money, create a transaction
+              db.create('transaction', {user_id: result[0].result[0].id, amount: person.amount, status: 'paid'})
+              .then((result) => {
+                  res.json(result[0].id);
+              });
+  
+              // update the user's balance
+              db.merge(result[0].result[0].id, {balance: result[0].result[0].balance - (person.amount*.9)});
+  
+              // update the bank's balance
+              db.query('SELECT * FROM user WHERE email = "bank@supplier.com"').then((result) => { 
+                  db.merge(result[0].result[0].id, {balance: result[0].result[0].balance + (person.amount*.9)});
+              });
+          });
+  }
 
 // get the user's balance
 function balance(req, res) {

@@ -56,6 +56,7 @@
             </div>
             <input hidden type="text" value={product.id} name="orderID">
             <input hidden type="text" value={product.trxID} name="trxID">
+            <input hidden type="number" value={product.amount} name="amount">
             {#if product.status === 'Pending'}
                 <button type="submit" class="btn variant-filled" value={product.id}>Confirm</button>
             {/if}

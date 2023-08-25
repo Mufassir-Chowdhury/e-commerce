@@ -87,6 +87,8 @@ paths:
             properties:
               orderID:
                 type: string
+              amount:
+                type: number
                     
       responses:
         "200":

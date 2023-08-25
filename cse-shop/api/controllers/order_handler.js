@@ -5,7 +5,6 @@ module.exports = {
 };
 
 let db = require('./surreal.js');
-// const fetch = import('node-fetch');
 const axios = require('axios');
 
 // create a new order
@@ -13,7 +12,7 @@ function order(req, res) {
     const order = req.swagger.params.order.value;
     const time = new Date().toISOString();
     // create a new order in the e-commerce database
-    db.create('order', {email: order.email, trxID: order.trxID, cart: order.cart, amount: order.amount, time: time})
+    db.create('order', {email: order.email, trxID: order.trxID, cart: order.cart, amount: order.amount, status: 'Pending', time: time})
     .then(async (result) => {
 
         // create a supply order to the supplier using their API

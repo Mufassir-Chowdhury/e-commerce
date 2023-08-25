@@ -158,6 +158,30 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /supplyPayment:
+    x-swagger-router-controller: payment
+    post:
+      description: Get balance
+      operationId: supplyPayment
+      parameters:
+        - name: user
+          in: body
+          description: User information for verification
+          required: true
+          schema:
+            type: object
+            properties:
+              amount:
+                type: number
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/BalanceResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /signin:
     x-swagger-router-controller: authentication_controller
     post:

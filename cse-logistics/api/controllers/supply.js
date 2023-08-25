@@ -7,7 +7,7 @@ module.exports = {
 };
 
 const db = require('./surreal.js');
-
+const axios = require('axios');
 // create a new supply order
 function supply(req, res) {
     const order = req.swagger.params.supply.value;
@@ -34,6 +34,11 @@ function supplies(req, res) {
 function confirm(req, res) {
     const order = req.swagger.params.order.value;
     db.merge(order.orderID, {status: 'Confirmed'}).then((result) => {
+        const amount = parseInt(order.amount);
+        axios.post('http://localhost:10020/supplyPayment', { amount })
+            .catch((err) => {
+                console.log("axios.post error:", err);
+            });
         res.json(result);
     }).catch((err) => {
         res.json(err);
